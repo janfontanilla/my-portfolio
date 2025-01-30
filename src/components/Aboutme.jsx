@@ -1,4 +1,4 @@
-//Aboutme.jsx, Jan Fontanilla, 301380907, 2025-01-29
+//Aboutme.jsx, Jan Fontanilla, 301380907, 2025-01-29//
 import myImage from '../assets/images/image.png';
 import resumePDF from '../assets/JanRafaelFontanilla_Resume.pdf'; 
 
