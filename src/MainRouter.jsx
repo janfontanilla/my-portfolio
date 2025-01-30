@@ -1,7 +1,7 @@
 //MainRouter.jsx Jan Fontanilla, 301380907, 2025-01-29
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import AboutMe from './components/AboutMe';
+import AboutMe from './components/Aboutme';
 import Projects from './components/Projects';
 import Services from './components/Services';
 import Contact from './components/Contact';
