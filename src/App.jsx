@@ -6,8 +6,8 @@ import MainRouter from './MainRouter';
 const App = () => {
   return (
     <div>
-      <Navbar />  {/* Render Navbar on all pages */}
-      <MainRouter />  {/* The Router will render the correct page based on the route */}
+      <Navbar />  
+      <MainRouter /> 
     </div>
   );
 };
