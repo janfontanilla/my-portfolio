@@ -23,8 +23,11 @@ export const getUserById = async (req, res) => {
 
 
 export const createUser = async (req, res) => {
-  const { username, password, email } = req.body;
-  const newUser = new User({ username, password, email });
+  const { name, email, password } = req.body;
+  const created = new Date();
+  const updated = created;
+
+  const newUser = new User({ name, email, password, created, updated });
 
   try {
     const savedUser = await newUser.save();
