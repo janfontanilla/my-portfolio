@@ -23,9 +23,9 @@ export const getContactById = async (req, res) => {
 
 
 export const createContact = async (req, res) => {
-  const { firstname, lastname, email } = req.body;
+  const { firstName, lastLame, email } = req.body;
 
-  const newContact = new Contact({ firstname, lastname, email });
+  const newContact = new Contact({ firstName, LastName, email });
 
   try {
     const savedContact = await newContact.save();

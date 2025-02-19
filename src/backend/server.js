@@ -6,8 +6,11 @@ import contactRoutes from './Routes/contactRoutes.js';
 
 const app = express();
 
+
+app.use(cors());
+
+
 app.use(express.json());
-app.use(cors());  
 
 
 app.use('/api', userRoutes);
@@ -15,12 +18,14 @@ app.use('/api', contactRoutes);
 
 
 const mongoURI = 'mongodb+srv://janUser:janUserPASSWORD@cluster0.430hv.mongodb.net/Skeleton?retryWrites=true&w=majority&appName=Cluster0';
-const port = 3000; 
 
 
-mongoose.connect(mongoURI)
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log(err));
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log("MongoDB connected"))
+  .catch(err => console.log('MongoDB connection error:', err));
 
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+const PORT = 3000; 
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
