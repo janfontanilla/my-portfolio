@@ -1,18 +1,18 @@
-import express from "express";
-import connectDB from "./db.js"; // Corrected path
-import dotenv from "dotenv";
-
-dotenv.config();
-connectDB(); // Connect to MongoDB
+import express from 'express';
+import mongoose from 'mongoose';
+import userRoutes from './Routes/userRoutes.js';
+import contactRoutes from './Routes/contactRoutes.js'
 
 const app = express();
+app.use(express.json()); 
+app.use(userRoutes); 
 
-app.use(express.json());
+mongoose
+  .connect('mongodb://127.0.0.1:27017/Skeleton', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.log(err));
 
-app.get('/', (req, res) => {
-    res.send('Welcome to my portfolio application')
-})
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
