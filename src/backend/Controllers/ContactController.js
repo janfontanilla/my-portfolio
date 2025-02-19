@@ -6,7 +6,7 @@ export const getAllContacts = async (req, res) => {
     const contacts = await Contact.find();
     res.json(contacts);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -17,14 +17,15 @@ export const getContactById = async (req, res) => {
     if (!contact) return res.status(404).json({ message: 'Contact not found' });
     res.json(contact);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
 
 export const createContact = async (req, res) => {
-  const { name, email, phone } = req.body;
-  const newContact = new Contact({ name, email, phone });
+  const { firstname, lastname, email } = req.body;
+
+  const newContact = new Contact({ firstname, lastname, email });
 
   try {
     const savedContact = await newContact.save();
@@ -41,7 +42,7 @@ export const updateContact = async (req, res) => {
     if (!updatedContact) return res.status(404).json({ message: 'Contact not found' });
     res.json(updatedContact);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -50,9 +51,9 @@ export const deleteContact = async (req, res) => {
   try {
     const deletedContact = await Contact.findByIdAndDelete(req.params.id);
     if (!deletedContact) return res.status(404).json({ message: 'Contact not found' });
-    res.json({ message: 'Contact deleted' });
+    res.json({ message: 'Contact deleted successfully' });
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -60,8 +61,8 @@ export const deleteContact = async (req, res) => {
 export const deleteAllContacts = async (req, res) => {
   try {
     await Contact.deleteMany();
-    res.json({ message: 'All contacts deleted' });
+    res.json({ message: 'All contacts deleted successfully' });
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };

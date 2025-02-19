@@ -1,18 +1,26 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import userRoutes from './Routes/userRoutes.js';
-import contactRoutes from './Routes/contactRoutes.js'
+import contactRoutes from './Routes/contactRoutes.js';
 
 const app = express();
-app.use(express.json()); 
-app.use(userRoutes); 
 
-mongoose
-  .connect('mongodb://127.0.0.1:27017/Skeleton', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
+app.use(express.json());
+app.use(cors());  
+
+
+app.use('/api', userRoutes);
+app.use('/api', contactRoutes);
+
+
+const mongoURI = 'mongodb+srv://janUser:janUserPASSWORD@cluster0.430hv.mongodb.net/Skeleton?retryWrites=true&w=majority&appName=Cluster0';
+const port = 3000; 
+
+
+mongoose.connect(mongoURI)
+  .then(() => console.log("MongoDB connected"))
   .catch(err => console.log(err));
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
