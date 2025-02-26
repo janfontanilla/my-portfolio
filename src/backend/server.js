@@ -19,8 +19,12 @@ const mongoURI = 'mongodb+srv://janUser:janUserPASSWORD@cluster0.430hv.mongodb.n
 
 mongoose.connect(mongoURI, {
 }).then(() => console.log("MongoDB connected"))
-  .catch(err => console.log('MongoDB connection error:', err));
+.catch(err => console.log(err));
 
+
+app.get('/', (req, res) => {
+  res.send('Message: Welcome to my-portfolio application!');
+});
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
